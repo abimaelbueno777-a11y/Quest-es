@@ -4,7 +4,7 @@ class Pagamento{
     }
 
     processar(){
-        throw new Error("Método abstrato")
+        console.log("Método processar deve ser implementado")
     }
 }
 
@@ -15,7 +15,9 @@ class CartaoCredito extends Pagamento{
     }
 
     processar(){
-        console.log(`Pagamento de ${this.valor} em ${this.parcelamento}x`)
+        console.log(
+            `Pagamento de R$${this.valor} no cartão em ${this.parcelamento}x`
+        )
     }
 }
 
@@ -26,7 +28,9 @@ class Pix extends Pagamento{
     }
 
     processar(){
-        console.log(`Pix enviado para ${this.chavePix}`)
+        console.log(
+            `Pagamento Pix de R$${this.valor} para ${this.chavePix}`
+        )
     }
 }
 
@@ -37,20 +41,22 @@ class Boleto extends Pagamento{
     }
 
     processar(){
-        console.log(`Boleto ${this.codigoDeBarras}`)
+        console.log(
+            `Pagamento por boleto de R$${this.valor}. Código: ${this.codigoDeBarras}`
+        )
     }
 }
 
 function processarTodos(pagamentos){
-    pagamentos.forEach(pagamento => {
+    for(let pagamento of pagamentos){
         pagamento.processar()
-    })
+    }
 }
 
 let pagamentos = [
     new CartaoCredito(100, 2),
-    new Pix(50, "email@gmail.com"),
-    new Boleto(200, "123456")
+    new Pix(50, "abimael@email.com"),
+    new Boleto(200, "123456789")
 ]
 
 processarTodos(pagamentos)

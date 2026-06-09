@@ -1,6 +1,6 @@
 class Forma{
     calcularArea(){
-        throw new Error("Método abstrato")
+        console.log("Método calcularArea deve ser implementado")
     }
 }
 
@@ -11,7 +11,7 @@ class Circulo extends Forma{
     }
 
     calcularArea(){
-        return Math.PI * this.raio ** 2
+        return Math.PI * this.raio * this.raio
     }
 }
 
@@ -45,6 +45,6 @@ let formas = [
     new Triangulo(8, 6)
 ]
 
-formas.forEach(forma => {
+for(let forma of formas){
     console.log(forma.calcularArea())
-})
+}
